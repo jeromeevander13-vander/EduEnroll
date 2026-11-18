@@ -188,6 +188,8 @@
                             <span>{{ $course->department->name }}</span>
                         </div>
 
+                        <p class="mt-1.5 text-xs font-medium text-slate-600">{{ $course->units }} units</p>
+
                         <!-- Instructor Field -->
                         @if ($course->instructor)
                             <div class="mt-1.5 flex items-center text-xs font-medium leading-5 text-slate-600">

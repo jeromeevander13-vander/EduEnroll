@@ -40,6 +40,11 @@
 
                 <!-- Key Details Spec Grid -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/80">
+                        <span class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 block mb-1">Course Units</span>
+                        <div class="font-bold text-slate-900 text-sm">{{ $course->units }} units</div>
+                    </div>
+
                     <!-- Department -->
                     <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/80">
                         <span class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 block mb-1">Academic Department</span>
@@ -115,7 +120,7 @@
                         <div role="status" class="rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-900">
                             <p class="font-bold">Accepted — Awaiting Exam &amp; Interview Date</p>
                             <p class="mt-1 text-xs text-emerald-700">Your course request has been accepted. Please wait for NCC to contact you with your exam and interview schedule.</p>
-                            <form action="{{ route('courses.enrollment.cancel', $course->id) }}" method="POST" class="mt-4">
+                            <form action="{{ route('courses.enrollment.cancel', $course->id) }}" method="POST" class="mt-4" data-single-submit>
                                 @csrf
                                 @include('courses.partials.cancellation-fields')
                                 <button type="submit" class="rounded-lg border border-red-200 bg-white px-3 py-2 text-xs font-bold text-red-700 transition hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-500">
@@ -127,7 +132,7 @@
                         <div role="status" class="rounded-2xl border border-amber-200 bg-amber-50 p-4 text-amber-900">
                             <p class="font-bold">Request pending review</p>
                             <p class="mt-1 text-xs text-amber-800">NCC administration will review your course enrollment request.</p>
-                            <form action="{{ route('courses.enrollment.cancel', $course->id) }}" method="POST" class="mt-4">
+                            <form action="{{ route('courses.enrollment.cancel', $course->id) }}" method="POST" class="mt-4" data-single-submit>
                                 @csrf
                                 @include('courses.partials.cancellation-fields')
                                 <button type="submit" class="rounded-lg border border-amber-300 bg-white px-3 py-2 text-xs font-bold text-amber-900 transition hover:bg-amber-100 focus:outline-none focus:ring-2 focus:ring-amber-500">
@@ -174,7 +179,7 @@
                             </div>
                         @endif
 
-                        <form action="{{ route('courses.enroll', $course->id) }}" method="POST" class="space-y-4">
+                        <form action="{{ route('courses.enroll', $course->id) }}" method="POST" class="space-y-4" data-single-submit>
                         @csrf
                         <p class="text-xs leading-relaxed text-slate-500">Your request will be sent to NCC administration for approval.</p>
                         <button 

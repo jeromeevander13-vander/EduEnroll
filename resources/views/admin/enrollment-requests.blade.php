@@ -21,7 +21,7 @@
                 </p>
             </div>
 
-            <form method="POST" action="{{ route('admin.academic-periods.store') }}" class="grid w-full gap-3 sm:grid-cols-[1fr_auto] lg:max-w-xl">
+            <form method="POST" action="{{ route('admin.academic-periods.store') }}" class="grid w-full gap-3 sm:grid-cols-[1fr_auto] lg:max-w-xl" data-single-submit>
                 @csrf
                 <label class="text-xs font-semibold text-slate-600">
                     Academic year starts
@@ -68,7 +68,7 @@
                             </td>
                             <td class="px-4 py-3 text-right">
                                 @unless ($academicPeriod->is_active)
-                                    <form method="POST" action="{{ route('admin.academic-periods.activate', $academicPeriod) }}">
+                                    <form method="POST" action="{{ route('admin.academic-periods.activate', $academicPeriod) }}" data-single-submit>
                                         @csrf
                                         <button type="submit" class="rounded-lg border border-ncc-maroon/20 px-3 py-2 text-xs font-bold text-ncc-maroon transition hover:bg-ncc-maroon hover:text-white">
                                             Set Active
@@ -134,7 +134,7 @@
                                 <p class="mt-0.5 text-xs text-slate-500">{{ $legacyEnrollment->user->email }}</p>
                                 <p class="mt-1 text-xs text-slate-500">Accepted {{ $legacyEnrollment->accepted_at?->format('M j, Y') ?? 'date not recorded' }}</p>
                             </div>
-                            <form method="POST" action="{{ route('admin.enrollment-history.record', $legacyEnrollment) }}" class="grid w-full gap-3 sm:grid-cols-2 lg:max-w-2xl">
+                            <form method="POST" action="{{ route('admin.enrollment-history.record', $legacyEnrollment) }}" class="grid w-full gap-3 sm:grid-cols-2 lg:max-w-2xl" data-single-submit>
                                 @csrf
                                 <label class="text-xs font-semibold text-slate-600">
                                     @if ($legacyEnrollment->academicPeriod)
@@ -361,7 +361,7 @@
                             </dl>
                             @if ($enrollmentRequest->status === \App\Models\EnrollmentRequest::STATUS_PENDING)
                                 <div class="mt-4 grid gap-3 rounded-2xl border border-emerald-100 bg-emerald-50/60 p-4 sm:grid-cols-2">
-                                    <form method="POST" action="{{ route('admin.enrollment.accept', $enrollmentRequest) }}" class="contents">
+                                    <form method="POST" action="{{ route('admin.enrollment.accept', $enrollmentRequest) }}" class="contents" data-single-submit>
                                         @csrf
                                         <label class="text-xs font-semibold text-slate-600">
                                             Organization to accept into
@@ -384,7 +384,7 @@
                                         <div class="flex flex-wrap items-center gap-2 sm:col-span-2">
                                             <button type="submit" class="rounded-lg bg-emerald-600 px-3 py-2 text-xs font-bold text-white hover:bg-emerald-700">Accept Student</button>
                                     </form>
-                                    <form method="POST" action="{{ route('admin.enrollment.reject', $enrollmentRequest) }}">
+                                    <form method="POST" action="{{ route('admin.enrollment.reject', $enrollmentRequest) }}" data-single-submit>
                                         @csrf
                                         <button type="submit" class="rounded-lg border border-red-200 px-3 py-2 text-xs font-bold text-red-700 hover:bg-red-50">Reject Application</button>
                                     </form>
@@ -424,22 +424,22 @@
                                     @endif
                                     @if ($courseEnrollmentRequest->status === \App\Models\CourseEnrollmentRequest::STATUS_PENDING)
                                         <div class="mt-4 flex flex-wrap gap-2">
-                                            <form method="POST" action="{{ route('admin.course-enrollment.approve', $courseEnrollmentRequest) }}">
+                                            <form method="POST" action="{{ route('admin.course-enrollment.approve', $courseEnrollmentRequest) }}" data-single-submit>
                                                 @csrf
                                                 <button type="submit" class="rounded-lg bg-emerald-600 px-3 py-2 text-xs font-bold text-white hover:bg-emerald-700">Approve</button>
                                             </form>
-                                            <form method="POST" action="{{ route('admin.course-enrollment.reject', $courseEnrollmentRequest) }}">
+                                            <form method="POST" action="{{ route('admin.course-enrollment.reject', $courseEnrollmentRequest) }}" data-single-submit>
                                                 @csrf
                                                 <button type="submit" class="rounded-lg border border-red-200 px-3 py-2 text-xs font-bold text-red-700 hover:bg-red-50">Reject</button>
                                             </form>
                                         </div>
                                     @elseif ($courseEnrollmentRequest->status === \App\Models\CourseEnrollmentRequest::STATUS_CANCELLATION_PENDING)
                                         <div class="mt-4 flex flex-wrap gap-2">
-                                            <form method="POST" action="{{ route('admin.course-enrollment.approve-cancellation', $courseEnrollmentRequest) }}">
+                                            <form method="POST" action="{{ route('admin.course-enrollment.approve-cancellation', $courseEnrollmentRequest) }}" data-single-submit>
                                                 @csrf
                                                 <button type="submit" class="rounded-lg bg-emerald-600 px-3 py-2 text-xs font-bold text-white hover:bg-emerald-700">Approve Cancellation</button>
                                             </form>
-                                            <form method="POST" action="{{ route('admin.course-enrollment.reject-cancellation', $courseEnrollmentRequest) }}">
+                                            <form method="POST" action="{{ route('admin.course-enrollment.reject-cancellation', $courseEnrollmentRequest) }}" data-single-submit>
                                                 @csrf
                                                 <button type="submit" class="rounded-lg border border-red-200 px-3 py-2 text-xs font-bold text-red-700 hover:bg-red-50">Reject Cancellation</button>
                                             </form>

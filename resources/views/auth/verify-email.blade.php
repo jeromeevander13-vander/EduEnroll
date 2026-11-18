@@ -25,14 +25,14 @@
         </div>
     @endif
 
-    <form method="POST" action="{{ route('verification.send') }}" class="mt-6">
+    <form method="POST" action="{{ route('verification.send') }}" class="mt-6" data-single-submit>
         @csrf
         <button type="submit" class="rounded-xl bg-ncc-maroon px-5 py-3 text-sm font-bold text-white transition hover:bg-ncc-maroonHover focus:outline-none focus:ring-2 focus:ring-ncc-gold focus:ring-offset-2">
             Resend verification email
         </button>
     </form>
 
-    <form method="POST" action="{{ route('logout') }}" class="mt-4">
+    <form method="POST" action="{{ route('logout') }}" class="mt-4" data-single-submit>
         @csrf
         <button type="submit" class="text-sm font-semibold text-slate-500 hover:text-ncc-maroon">Sign out</button>
     </form>

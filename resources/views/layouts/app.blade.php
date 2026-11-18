@@ -167,7 +167,7 @@
                         @else
                             <a href="{{ route('verification.notice') }}" class="rounded-xl px-3 py-2 text-xs font-bold text-white transition hover:bg-white/10 sm:text-sm">Verify Email</a>
                         @endif
-                        <form method="POST" action="{{ route('logout') }}">
+                        <form method="POST" action="{{ route('logout') }}" data-single-submit>
                             @csrf
                             <button type="submit" class="rounded-xl border border-white/25 px-3 py-2 text-xs font-bold text-white transition hover:border-ncc-gold hover:text-ncc-gold sm:text-sm">Sign Out</button>
                         </form>
